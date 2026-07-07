@@ -1,1 +1,24 @@
-#todo
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: database
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-db}
+      POSTGRES_USER: ${POSTGRES_USER:-db}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+
+    ports:
+      - "9999:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - todo_app_net
+
+
+volumes:
+  db_data:
+
+networks:
+  todo_app_net:
+    driver: bridge
