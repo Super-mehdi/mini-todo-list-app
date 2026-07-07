@@ -1,10 +1,10 @@
 from sqlalchemy import String
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from typing import Optional, TYPE_CHECKING
 
-from backend.database import Base
-
+Base = declarative_base()
 
 if TYPE_CHECKING :
     from backend.models.task import Task

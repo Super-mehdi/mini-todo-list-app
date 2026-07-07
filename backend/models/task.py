@@ -1,7 +1,6 @@
 from sqlalchemy import String, Enum, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
-from backend.database import Base
+from sqlalchemy.ext.declarative import declarative_base
 
 from backend.enums.task_status import TaskStatus
 
@@ -9,6 +8,9 @@ from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from backend.models.project import Project
+
+Base = declarative_base()
+
 
 class Task(Base):
     __tablename__="tasks"
