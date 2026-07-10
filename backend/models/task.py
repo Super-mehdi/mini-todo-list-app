@@ -1,15 +1,16 @@
 from sqlalchemy import String, Enum, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.ext.declarative import declarative_base
 
-from backend.enums.task_status import TaskStatus
+from enums.task_status import TaskStatus
+
+from database import Base
+
 
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from backend.models.project import Project
 
-Base = declarative_base()
 
 
 class Task(Base):
