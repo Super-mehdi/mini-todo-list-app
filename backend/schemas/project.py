@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 from typing import Optional
 
-from task import TaskResponse
+from schemas.task import TaskResponse
 
 class ProjectRequest(BaseModel):
     title: str

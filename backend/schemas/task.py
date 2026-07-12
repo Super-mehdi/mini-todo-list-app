@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 from typing import Optional
 
-from backend.enums.task_status import TaskStatus
+from enums.task_status import TaskStatus
 
 class TaskRequest(BaseModel):
     title: str
