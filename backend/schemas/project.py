@@ -14,3 +14,5 @@ class ProjectResponse(BaseModel):
     title: str
     description: Optional[str] = None
     tasks: list[TaskResponse]
+
+    model_config = {'from_attributes': True}

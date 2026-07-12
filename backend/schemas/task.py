@@ -14,3 +14,4 @@ class TaskResponse(BaseModel):
     description: Optional[str] = None
     status: TaskStatus
 
+    model_config = {'from_attributes': True}
