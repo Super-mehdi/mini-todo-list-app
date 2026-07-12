@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text
@@ -8,10 +10,15 @@ from models.project import Project
 from models.task import Task
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print('Creating database tables...')
+    Base.metadata.create_all(bind=engine)
+    print('Database tables created successfully.')
+    yield
 
 
-print('Creating database tables...')
-Base.metadata.create_all(bind=engine)
-print('Database tables created successfully.')
+app = FastAPI(lifespan=lifespan)
+
+
 
