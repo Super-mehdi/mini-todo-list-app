@@ -1,5 +1,9 @@
 
 services:
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
   backend:
     build: ./backend
     environment:
@@ -10,6 +14,8 @@ services:
       - todo_app_net
     depends_on:
       - db
+    volumes:
+      - ./backend:/code
   db:
     image: postgres:16-alpine
     container_name: database

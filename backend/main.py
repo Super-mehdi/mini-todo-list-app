@@ -34,3 +34,22 @@ def get_db():
 def route_create_project(project_in: ProjectRequest,db: Session = Depends(get_db)):
     return services.crud.create_project(db=db,project=project_in)
 
+@app.get("/project/{projectId}",response_model=ProjectResponse)
+def route_get_project(projectId: int, db: Session=Depends(get_db)):
+    return services.crud.get_project(db,projectId)
+
+@app.get("/all_projects",response_model=list[ProjectResponse])
+def route_get_all_projects(db: Session=Depends(get_db)):
+    return services.crud.get_all_projects(db)
+
+@app.get("/projects/{projectName}", response_model=list[ProjectResponse])
+def route_get_project_by_name(projectName,db: Session=Depends(get_db)):
+    return services.crud.get_project_by_name(db,projectName)
+
+@app.put("/update_project/{id}")
+def route_update_project(id,project_in: ProjectRequest, db: Session=Depends(get_db)):
+    return services.crud.update_project(db,id,project_in)
+
+@app.delete("/delete_project/{id}")
+def route_delete_project(id: int, db: Session=Depends(get_db)):
+    return services.crud.delete_project_by_id(db,id)
