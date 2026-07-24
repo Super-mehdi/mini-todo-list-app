@@ -16,4 +16,4 @@ class Project(Base):
     id: Mapped[int] = mapped_column(primary_key = True)
     title: Mapped[str] = mapped_column(String(255))
     description: Mapped[Optional[str]] = mapped_column(String(1000),nullable=True)
-    tasks: Mapped[list["Task"]] = relationship(back_populates="project")
+    tasks: Mapped[list["Task"]] = relationship(back_populates="project",cascade="all, delete-orphan")

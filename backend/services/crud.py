@@ -49,7 +49,7 @@ def delete_project_by_id(db: Session, id: int):
 
 #Task crud operations
 
-def create_task(db: Session, task_in: TaskRequest)->TaskResponse:
+def create_task(db: Session, task_in: TaskRequest)->Task:
     db_task = Task(**task_in.model_dump())
     db.add(db_task)
     db.commit()
@@ -60,3 +60,25 @@ def get_task_by_project_id(db: Session, project_id: int)->list[Task]:
     tasks = db.scalars(select(Task).where(Task.project_id == project_id)).all()
     return tasks
 
+def get_task_by_id(db: Session, project_id: int, task_id: int):
+    db_task = db.scalar(select(Task).where(Task.project_id == project_id and Task.id==task_id))
+    return db_task
+
+def update_task(db: Session, task_id: int,task_in: TaskRequest):
+    task = get_task_by_id(db,task_in.project_id,task_id)
+    if task_in.title and task_in.title.strip():
+        task.title = task_in.title
+    if task_in.description and task_in.description.strip():
+        task.description = task_in.description
+    db.add(task)
+    db.commit()
+    db.refresh(task)
+    return task
+
+def delete_task(db: Session, task_id:int,project_id:int):
+    db_task = get_task_by_id(db,project_id,task_id)
+    if not db_task:
+        return "No matching task was found !"
+    db.delete(db_task)
+    db.commit()
+    return db_task
