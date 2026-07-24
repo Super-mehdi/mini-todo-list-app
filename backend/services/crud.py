@@ -55,3 +55,8 @@ def create_task(db: Session, task_in: TaskRequest)->TaskResponse:
     db.commit()
     db.refresh(db_task)
     return db_task
+
+def get_task_by_project_id(db: Session, project_id: int)->list[Task]:
+    tasks = db.scalars(select(Task).where(Task.project_id == project_id)).all()
+    return tasks
+

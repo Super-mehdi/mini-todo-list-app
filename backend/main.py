@@ -67,3 +67,7 @@ def route_delete_project(id: int, db: Session=Depends(get_db)):
 def route_create_task(task_in: TaskRequest,db: Session=Depends(get_db)):
     return services.crud.create_task(db,task_in)
     
+@app.get("/get_tasks/{project_id}",response_model=list[TaskResponse])
+def route_getproject_tasks(project_id:int,db: Session=Depends(get_db)):
+    return services.crud.get_task_by_project_id(db,project_id)
+
