@@ -70,10 +70,13 @@ def update_task(db: Session, task_id: int,task_in: TaskRequest):
         task.title = task_in.title
     if task_in.description and task_in.description.strip():
         task.description = task_in.description
+    if task_in.status :
+        task.status=task_in.status
     db.add(task)
     db.commit()
     db.refresh(task)
     return task
+
 
 def delete_task(db: Session, task_id:int,project_id:int):
     db_task = get_task_by_id(db,project_id,task_id)
