@@ -10,6 +10,7 @@ from models.project import Project
 from models.task import Task
 
 from schemas.project import ProjectRequest, ProjectResponse
+from schemas.task import TaskRequest, TaskResponse
 
 import services.crud
 
@@ -29,6 +30,12 @@ def get_db():
         yield db
     finally:
         db.close()
+
+#test
+@app.get("/test")
+def route_test():
+    return "I am finerr !!"
+#project endpoints
 
 @app.post("/projects/",response_model=ProjectResponse)
 def route_create_project(project_in: ProjectRequest,db: Session = Depends(get_db)):
@@ -53,3 +60,10 @@ def route_update_project(id,project_in: ProjectRequest, db: Session=Depends(get_
 @app.delete("/delete_project/{id}")
 def route_delete_project(id: int, db: Session=Depends(get_db)):
     return services.crud.delete_project_by_id(db,id)
+
+#Tasks endpoints
+
+@app.post("/add_task", response_model=TaskResponse)
+def route_create_task(task_in: TaskRequest,db: Session=Depends(get_db)):
+    return services.crud.create_task(db,task_in)
+    

@@ -6,10 +6,12 @@ from enums.task_status import TaskStatus
 
 class TaskRequest(BaseModel):
     title: str
+    project_id:int
     description: Optional[str] = None
 
 class TaskResponse(BaseModel):
     id: int
+    project_id: int
     title: str
     description: Optional[str] = None
     status: TaskStatus

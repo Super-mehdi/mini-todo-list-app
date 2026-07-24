@@ -46,3 +46,12 @@ def delete_project_by_id(db: Session, id: int):
     db.delete(project)
     db.commit()
     return project
+
+#Task crud operations
+
+def create_task(db: Session, task_in: TaskRequest)->TaskResponse:
+    db_task = Task(**task_in.model_dump())
+    db.add(db_task)
+    db.commit()
+    db.refresh(db_task)
+    return db_task

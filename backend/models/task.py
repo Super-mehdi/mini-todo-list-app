@@ -21,4 +21,4 @@ class Task(Base):
     project: Mapped["Project"] = relationship(back_populates= "tasks")
     title: Mapped[str] = mapped_column(String(255))
     description: Mapped[Optional[str]] = mapped_column(String(1000), nullable=True)
-    status: Mapped[TaskStatus] = mapped_column(Enum(TaskStatus))
+    status: Mapped[TaskStatus] = mapped_column(Enum(TaskStatus),default=TaskStatus.TODO)
