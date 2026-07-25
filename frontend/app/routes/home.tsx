@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import Hello  from "../components/hello";
+import Header  from "../components/header";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,5 +8,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Hello />;
+  return (<div>
+            
+          </div>
+          );
 }
