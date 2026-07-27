@@ -7,10 +7,23 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white text-slate-800 dark:bg-gray-950 dark:text-slate-100;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+body {
+  font-feature-settings: "cv11", "ss01";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(14, 116, 144, 0.2);
+  color: #0f172a;
 }
 

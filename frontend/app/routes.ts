@@ -5,5 +5,7 @@ export default [
                 route("projects","routes/projects.tsx"),
                 route("projects/:project_id","routes/project_details.tsx"),
                 route("projects/new","routes/create_project.tsx"),
-                route("projects/:project_id/edit","routes/edit_project.tsx")
+                route("projects/:project_id/edit","routes/edit_project.tsx"),
+                route("projects/:project_id/tasks/new","routes/add_task.tsx"),
+                route("projects/:project_id/tasks/:task_id/edit","routes/edit_task.tsx")
                ] satisfies RouteConfig;

@@ -32,7 +32,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(125,211,252,0.24),transparent_30%),linear-gradient(135deg,_#f8fbff_0%,_#f6f7fb_45%,_#f3f4f6_100%)] text-slate-800 antialiased">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -62,14 +62,19 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
+    <main className="mx-auto flex min-h-screen max-w-3xl items-center justify-center px-4 py-16">
+      <div className="w-full rounded-[32px] border border-slate-200/80 bg-white/80 p-8 shadow-[0_30px_70px_-35px_rgba(15,23,42,0.45)] backdrop-blur">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600">
+          Something went wrong
+        </p>
+        <h1 className="mt-3 text-3xl font-semibold text-slate-900">{message}</h1>
+        <p className="mt-3 text-base leading-7 text-slate-600">{details}</p>
+        {stack && (
+          <pre className="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-4 text-sm text-slate-100">
+            <code>{stack}</code>
+          </pre>
+        )}
+      </div>
     </main>
   );
 }
