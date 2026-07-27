@@ -8,7 +8,7 @@ class TaskRequest(BaseModel):
     title: str
     project_id:int
     description: Optional[str] = None
-    status: Optional[TaskStatus]
+    status: Optional[TaskStatus] = TaskStatus.TODO
 
 class TaskResponse(BaseModel):
     id: int
